@@ -1,0 +1,11 @@
+[Unit]
+Description=start X11
+Requires=lxc@android.service
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=X :0
+
+[Install]
+WantedBy=graphical.target
