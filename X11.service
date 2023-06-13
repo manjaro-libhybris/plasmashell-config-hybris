@@ -5,7 +5,8 @@ After=multi-user.target
 
 [Service]
 Type=simple
-ExecStart=X :0
+ExecStart=X -nocursor :0
+Restart=always
 
 [Install]
 WantedBy=graphical.target
