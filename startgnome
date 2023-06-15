@@ -21,8 +21,7 @@ do
        true
     else
         exec su - manjaro -c "sh -c \"unset TERM && unset QT_QPA_PLATFORM && unset QT_WAYLAND_DISABLE_WINDOWDECORATION && unset MOZ_ENABLE_WAYLAND && XDG_SESSION_TYPE=x11 EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 GDK_GL=gles GDK_SCALE=2 QT_AUTO_SCREEN_SET_FACTOR=0 QT_SCALE_FACTOR=2 QT_FONT_DPI=96 dbus-run-session gnome-shell --replace\"" &
-        sleep 5
-        exec su - manjaro -c "sh -c \"unset TERM && unset QT_QPA_PLATFORM && unset QT_WAYLAND_DISABLE_WINDOWDECORATION && unset MOZ_ENABLE_WAYLAND && XDG_SESSION_TYPE=x11 EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 DISPLAY=:0 xbindkeys -f /etc/X11/xbindkeysrc\""
     fi
+    exec su - manjaro -c "sh -c \"unset TERM && unset QT_QPA_PLATFORM && unset QT_WAYLAND_DISABLE_WINDOWDECORATION && unset MOZ_ENABLE_WAYLAND && XDG_SESSION_TYPE=x11 EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 DISPLAY=:0 xbindkeys -f /etc/X11/xbindkeysrc\""
     sleep 5s
 done
