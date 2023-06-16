@@ -3,5 +3,9 @@ disable-extension-version-validation=true
 enabled-extensions=['user-theme@gnome-shell-extensions.gcampax.github.com','transparent-window-moving@noobsai.github.com','windowIsReady_Remover@nunofarruca@gmail.com','overview_cleaner@gonza.com','just-perfection-desktop@just-perfection','AlphabeticalAppGrid@stuarthayhurst','clear-top-bar@superterran.net','desktop-cube@schneegans.github.com','dash-to-dock@micxgx.gmail.com']
 
 [org.gnome.desktop.interface]
-text-scaling-factor=2
+color-scheme='prefer-dark'
+text-scaling-factor=1.5
 scaling-factor=1
+
+[org.gnome.desktop.background]
+picture-uri='file:///usr/share/backgrounds/gnome/blobs-l.svg'

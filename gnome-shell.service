@@ -1,5 +1,6 @@
 [Unit]
 Description=start gnome shell on top of X
+Requires=user@32011.service
 After=X11.service
 
 [Service]
