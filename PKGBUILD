@@ -3,7 +3,7 @@
 pkgname=gnomeshell-config-hybris
 conflicts=('phosh-config-hybris')
 pkgver=0.2
-pkgrel=2
+pkgrel=3
 pkgdesc="Gnome shell configurations for Halium"
 arch=('any')
 url="https://github.com/manjaro-libhybris/gnomeshell-config-hybris"
@@ -21,11 +21,11 @@ source=('X11.service'
 
 sha256sums=('57297c3f665058ec5a63f352e988811757a70874248dade1ba54f55dabf8fda0'
             '9fef9502fad9dc2e50e657fdc5c57bfbd6920b2cfc98d82089d96a7c6ff15daf'
-            '7059eedcc933e67c7f82df6412d6c85c5ce1659f5d9c0d6f9afef68bd4be6018'
+            '8f562f32525c1dfb27f42d656e938145e0fceb62a4fefe3579074a89a3c8d17c'
             '89049b70e47de31aa196f7246d0b1dfdbbe36dbbcc75a937383c22d8586bbffa'
             'de3719b3068be69d340ecd31981e7cc80e4541b862d26f54ca14c68c797ac507'
             '0d0307fa4081ca69637e7a21f1bd2199dfc2b480c953b0d860950098461f0652'
-            'd899e6d77d77c36cb2ff034db1e71903c2bfcad5265ec996644665c01343e0f1'
+            'c9395b93a0d6c88cc6b050a8c4dfc1ed1eeff309e728a00e9765481cd2b5ec4d'
             'da19046c4f75affa7da688b675fac911516c958965130385f020a2b1fd231b3c'
             'e98eb7942169b6c84f8dbf113b0e1890b2828f309ed5fd499a07020258f32cf1'
             '7886e127aaf9bf8fc41be21315fc975ff81345c104b0fb0b2be42b96acdfee73')

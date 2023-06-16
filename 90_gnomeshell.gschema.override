@@ -1,6 +1,6 @@
 [org.gnome.shell]
 disable-extension-version-validation=true
-enabled-extensions=['user-theme@gnome-shell-extensions.gcampax.github.com','transparent-window-moving@noobsai.github.com','windowIsReady_Remover@nunofarruca@gmail.com','overview_cleaner@gonza.com','just-perfection-desktop@just-perfection','AlphabeticalAppGrid@stuarthayhurst','clear-top-bar@superterran.net','desktop-cube@schneegans.github.com','dash-to-dock@micxgx.gmail.com']
+enabled-extensions=['user-theme@gnome-shell-extensions.gcampax.github.com', 'transparent-window-moving@noobsai.github.com', 'windowIsReady_Remover@nunofarruca@gmail.com', 'overview_cleaner@gonza.com', 'just-perfection-desktop@just-perfection', 'AlphabeticalAppGrid@stuarthayhurst', 'clear-top-bar@superterran.net', 'desktop-cube@schneegans.github.com', 'dash-to-dock@micxgx.gmail.com', 'RemoveAppMenu@Dragon8oy.com', 'move-clock@gnumdk.org', 'removeaccesibility@lomegor']
 
 [org.gnome.desktop.interface]
 color-scheme='prefer-dark'
@@ -9,3 +9,16 @@ scaling-factor=1
 
 [org.gnome.desktop.background]
 picture-uri='file:///usr/share/backgrounds/gnome/blobs-l.svg'
+
+[org.gnome.settings-daemon.plugins.media-keys]
+volume-up=['AudioRaiseVolume']
+volume-down=['AudioLowerVolume']
+
+[org.gnome.desktop.a11y.applications]
+screen-keyboard-enabled=true
+
+[org.gnome.mutter]
+dynamic-workspaces=false
+
+[org.gnome.desktop.wm.preferences]
+num-workspaces=4
