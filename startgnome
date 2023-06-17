@@ -27,8 +27,9 @@ do
         su - manjaro -c "export XDG_RUNTIME_DIR=/run/user/32011 && export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/32011/bus && gsettings set org.gnome.shell enabled-extensions \"['user-theme@gnome-shell-extensions.gcampax.github.com', 'transparent-window-moving@noobsai.github.com', 'windowIsReady_Remover@nunofarruca@gmail.com', 'overview_cleaner@gonza.com', 'just-perfection-desktop@just-perfection', 'AlphabeticalAppGrid@stuarthayhurst', 'clear-top-bar@superterran.net', 'desktop-cube@schneegans.github.com', 'dash-to-dock@micxgx.gmail.com', 'RemoveAppMenu@Dragon8oy.com', 'move-clock@gnumdk.org', 'removeaccesibility@lomegor']\""
         su - manjaro -c "sh -c 'export XDG_RUNTIME_DIR=/run/user/32011 && export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/32011/bus && gsettings set org.gnome.mutter dynamic-workspaces false'"
         su - manjaro -c "sh -c 'export XDG_RUNTIME_DIR=/run/user/32011 && export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/32011/bus && gsettings set org.gnome.desktop.wm.preferences num-workspaces 4'"
-    fi
 
-    su - manjaro -c "sh -c \"unset TERM && unset QT_QPA_PLATFORM && XDG_SESSION_TYPE=x11 EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 DISPLAY=:0 xbindkeys -f /etc/X11/xbindkeysrc\""
+        sleep 5s
+        su - manjaro -c "sh -c \"unset TERM && unset QT_QPA_PLATFORM && XDG_SESSION_TYPE=x11 EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 DISPLAY=:0 xbindkeys -f /etc/X11/xbindkeysrc\""
+    fi
     sleep 5s
 done
