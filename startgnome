@@ -7,17 +7,28 @@ chmod 755 -R /run/user || true
 chown manjaro:manjaro -R /run/user/32011 || true
 
 # when X starts up at boot theres this bug where the first thing that runs on it doesnt output anything on the screen so we need to run it once, kill it and run it again.
-su - manjaro -c "sh -c \"unset TERM && unset QT_QPA_PLATFORM && unset QT_WAYLAND_DISABLE_WINDOWDECORATION && unset MOZ_ENABLE_WAYLAND && XDG_SESSION_TYPE=x11 EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 GDK_GL=gles GDK_SCALE=2 QT_AUTO_SCREEN_SET_FACTOR=0 QT_SCALE_FACTOR=2 QT_FONT_DPI=96 dbus-run-session gnome-shell --replace\"" &
+su - manjaro -c "sh -c \"unset TERM && unset QT_QPA_PLATFORM && unset QT_WAYLAND_DISABLE_WINDOWDECORATION && unset MOZ_ENABLE_WAYLAND && export $(dbus-launch) && export XDG_RUNTIME_DIR="/run/user/32011" && export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/32011/bus && XDG_SESSION_TYPE=x11 EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 GDK_GL=gles GDK_SCALE=2 QT_AUTO_SCREEN_SET_FACTOR=0 QT_SCALE_FACTOR=2 QT_FONT_DPI=96 dbus-run-session gnome-shell --replace\"" &
 
 sleep 3s
+
+# gnome settings that do not get applied from gschema override but we need to have a mobile friendly interface
+su - manjaro -c "export XDG_RUNTIME_DIR=/run/user/32011 && export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/32011/bus && gsettings set org.gnome.shell enabled-extensions \"['user-theme@gnome-shell-extensions.gcampax.github.com', 'transparent-window-moving@noobsai.github.com', 'windowIsReady_Remover@nunofarruca@gmail.com', 'overview_cleaner@gonza.com', 'just-perfection-desktop@just-perfection', 'AlphabeticalAppGrid@stuarthayhurst', 'clear-top-bar@superterran.net', 'desktop-cube@schneegans.github.com', 'dash-to-dock@micxgx.gmail.com', 'RemoveAppMenu@Dragon8oy.com', 'move-clock@gnumdk.org', 'removeaccesibility@lomegor']\""
+su - manjaro -c "sh -c 'export XDG_RUNTIME_DIR=/run/user/32011 && export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/32011/bus && gsettings set org.gnome.mutter dynamic-workspaces false'"
+su - manjaro -c "sh -c 'export XDG_RUNTIME_DIR=/run/user/32011 && export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/32011/bus && gsettings set org.gnome.desktop.wm.preferences num-workspaces 4'"
 
 pkill -9 gnome-shell
 
 while true
 do
     if [ ! $(pidof gnome-shell) ]; then
-        su - manjaro -c "sh -c \"unset TERM && unset QT_QPA_PLATFORM && unset QT_WAYLAND_DISABLE_WINDOWDECORATION && unset MOZ_ENABLE_WAYLAND && export $(dbus-launch) && export XDG_RUNTIME_DIR="/run/user/32011" export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus" && export DBUS_SESSION_BUS_ADDRESS=/run/user/32011/bus && XDG_SESSION_TYPE=x11 EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 GDK_GL=gles GDK_SCALE=2 QT_AUTO_SCREEN_SET_FACTOR=0 QT_SCALE_FACTOR=2 QT_FONT_DPI=96 dbus-run-session gnome-shell --replace\"" &
+        su - manjaro -c "sh -c \"unset TERM && unset QT_QPA_PLATFORM && unset QT_WAYLAND_DISABLE_WINDOWDECORATION && unset MOZ_ENABLE_WAYLAND && export $(dbus-launch) && export XDG_RUNTIME_DIR="/run/user/32011" && export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/32011/bus" && XDG_SESSION_TYPE=x11 EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 GDK_GL=gles GDK_SCALE=2 QT_AUTO_SCREEN_SET_FACTOR=0 QT_SCALE_FACTOR=2 QT_FONT_DPI=96 dbus-run-session gnome-shell --replace\"" &
+
+        sleep 5s
+        su - manjaro -c "export XDG_RUNTIME_DIR=/run/user/32011 && export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/32011/bus && gsettings set org.gnome.shell enabled-extensions \"['user-theme@gnome-shell-extensions.gcampax.github.com', 'transparent-window-moving@noobsai.github.com', 'windowIsReady_Remover@nunofarruca@gmail.com', 'overview_cleaner@gonza.com', 'just-perfection-desktop@just-perfection', 'AlphabeticalAppGrid@stuarthayhurst', 'clear-top-bar@superterran.net', 'desktop-cube@schneegans.github.com', 'dash-to-dock@micxgx.gmail.com', 'RemoveAppMenu@Dragon8oy.com', 'move-clock@gnumdk.org', 'removeaccesibility@lomegor']\""
+        su - manjaro -c "sh -c 'export XDG_RUNTIME_DIR=/run/user/32011 && export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/32011/bus && gsettings set org.gnome.mutter dynamic-workspaces false'"
+        su - manjaro -c "sh -c 'export XDG_RUNTIME_DIR=/run/user/32011 && export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/32011/bus && gsettings set org.gnome.desktop.wm.preferences num-workspaces 4'"
     fi
+
     su - manjaro -c "sh -c \"unset TERM && unset QT_QPA_PLATFORM && XDG_SESSION_TYPE=x11 EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 DISPLAY=:0 xbindkeys -f /etc/X11/xbindkeysrc\""
     sleep 5s
 done

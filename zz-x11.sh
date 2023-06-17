@@ -5,6 +5,7 @@ export EGL_PLATFORM=x11
 export DISPLAY=:0
 export XDG_SESSION_TYPE=x11
 export GDK_GL=gles
+export GDK_BACKEND=x11
 
 # set some scaling for apps to have them more usable on small screens
 export GDK_SCALE=2
