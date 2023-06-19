@@ -1,0 +1,68 @@
+#!/bin/bash
+
+#sudo mkdir -p /run/user/32011 || true
+#sudo chmod 700 /run/user/32011 -R || true
+#sudo chown manjaro:manjaro -R /run/user/32011 || true
+
+pkill -9 kscreen_backend_launcher
+pkill -9 kscreen_osd_service
+pkill -9 org_kde_powerdevil
+pkill -9 xdg-desktop-portal-kde
+pkill -9 polkit-kde-authentication-agent-1
+pkill -9 kglobalaccel5
+pkill -9 kactivitymanagerd
+pkill -9 ksystemstats
+pkill -9 gmenudbusmenuproxy
+pkill -9 baloorunner
+pkill -9 xembedsniproxy
+pkill -9 maliit-server
+pkill -9 ksmserver
+pkill -9 kio-fuse
+pkill -9 plasmashell
+
+unset QT_QPA_PLATFORM
+unset MOZ_ENABLE_WAYLAND
+
+export $(dbus-launch)
+
+EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 dbus-run-session /usr/lib/kf5/kscreen_backend_launcher &
+
+EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 dbus-run-session /usr/lib/kscreen_osd_service &
+
+EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 dbus-run-session /usr/lib/org_kde_powerdevil &
+
+EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 dbus-run-session /usr/lib/xdg-desktop-portal-kde &
+
+EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 dbus-run-session /usr/lib/polkit-kde-authentication-agent-1 &
+
+EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 dbus-run-session /usr/bin/kglobalaccel5 &
+
+EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 dbus-run-session /usr/lib/kactivitymanagerd &
+
+EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 dbus-run-session /usr/bin/ksystemstats &
+
+EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 /usr/bin/gmenudbusmenuproxy &
+
+EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 dbus-run-session /usr/lib/baloorunner &
+
+EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 /usr/bin/xembedsniproxy &
+
+EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 dbus-run-session /usr/bin/maliit-server &
+
+sleep 2s
+
+DISPLAY=:0 QT_QPA_PLATFORMTHEME=KDE EGL_PLATFORM=x11 QT_QUICK_CONTROLS_STYLE=org.kde.breeze QT_ENABLE_GLYPH_CACHE_WORKAROUND=1 QT_QUICK_CONTROLS_MOBILE=true PLASMA_INTEGRATION_USE_PORTAL=1 PLASMA_PLATFORM=phone:handset PLASMA_DEFAULT_SHELL=org.kde.plasma.phoneshell DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 GDK_GL=gles GDK_SCALE=2 QT_AUTO_SCREEN_SET_FACTOR=0 QT_SCALE_FACTOR=2 QT_FONT_DPI=96 XDG_CURRENT_DESKTOP=KDE KDE_FULL_SESSION=true dbus-run-session ksmserver &
+
+EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 dbus-run-session /usr/lib/kio-fuse -f &
+
+sleep 2s
+
+QT_QPA_PLATFORMTHEME=KDE EGL_PLATFORM=x11 QT_QUICK_CONTROLS_STYLE=org.kde.breeze QT_ENABLE_GLYPH_CACHE_WORKAROUND=1 QT_QUICK_CONTROLS_MOBILE=true PLASMA_INTEGRATION_USE_PORTAL=1 PLASMA_PLATFORM=phone:handset PLASMA_DEFAULT_SHELL=org.kde.plasma.phoneshell DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 GDK_GL=gles GDK_SCALE=2 QT_AUTO_SCREEN_SET_FACTOR=0 QT_SCALE_FACTOR=2 QT_FONT_DPI=96 XDG_CURRENT_DESKTOP=KDE KDE_FULL_SESSION=true dbus-run-session plasmashell &
+
+EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 /usr/bin/kcminit_startup
+
+EGL_PLATFORM=x11 DISPLAY=:0 XDG_RUNTIME_DIR=/run/user/32011 dbus-run-session /usr/bin/plasma-apply-lookandfeel --apply org.kde.plasma.phone
+
+sleep 5s
+
+EGL_PLATFORM=x11 XDG_RUNTIME_DIR=/run/user/32011 DISPLAY=:0 xbindkeys -f /etc/X11/xbindkeysrc
